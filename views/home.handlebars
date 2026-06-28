@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/home.css">
+    <style>
+        a img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+{{!-- --------------------------------------------header---------------------------------------     --}}
+{{!-- --------------------------------------------header---------------------------------------     --}}
+{{!-- --------------------------------------------header---------------------------------------     --}}
+    <header>
+        <h1>AquaPower</h1>
+    </header>
+    {{#if mensagemCrud}}
+
+        <div id="mensagem">{{mensagemCrud}}</div>
+        
+    {{/if}}
+{{!-- ------------------------------------------Perfil----------------------------------------     --}}
+{{!-- ------------------------------------------Perfil----------------------------------------     --}}
+{{!-- ------------------------------------------Perfil----------------------------------------     --}}
+
+    <a href="/usuarios">
+        <img src="https://thumbs.dreamstime.com/b/%C3%ADcone-do-perfil-avatar-defeito-105356015.jpg" alt="">
+    </a>
+{{!-- ----------------------------------------Eficiencia-------------------------------------- --}}
+{{!-- ----------------------------------------Eficiencia-------------------------------------- --}}
+{{!-- ----------------------------------------Eficiencia-------------------------------------- --}}
+    <hr>
+    <table>
+        <tr>
+            <td style="padding-left:0px">
+
+                <h3>🌱 Eficiência</h3>
+
+                <p>{{eficiencia}}</p>
+
+                <small>{{mensagem}}</small>
+
+            </td>
+        </tr>
+    </table>
+
+    <br>
+{{!-- -------------------------------------Novo Consumo--------------------------------------- --}}
+{{!-- -------------------------------------Novo Consumo--------------------------------------- --}}
+{{!-- -------------------------------------Novo Consumo--------------------------------------- --}}
+    <a href="/consumos/cadastrar">
+        <button>Novo Consumo</button>
+    </a>
+
+    <hr>
+
+{{!-- ----------------------------------------Tabela-------------------------------------------- --}}
+{{!-- ----------------------------------------Tabela-------------------------------------------- --}}
+{{!-- ----------------------------------------Tabela-------------------------------------------- --}}
+    <h2>Histórico de Consumo</h2>
+
+    <table border="1">
+
+        <tr>
+
+            <th>Tipo</th>
+            <th>Mês</th>
+            <th>Ano</th>
+            <th>Valor</th>
+            <th>Ações</th>
+
+        </tr>
+
+        {{#each consumos}}
+
+        <tr>
+
+            <td>{{this.tipo}}</td>
+            <td>{{this.mes}}</td>
+            <td>{{this.ano}}</td>
+            <td>{{this.valor}}</td>
+
+            <td>
+
+                <a href="/consumos/editar/{{this.id}}">
+                    <button>Editar</button>
+                </a>
+
+                <form action="/consumos/delete/{{this.id}}" method="POST" style="display:inline">
+
+                    <button>
+
+                        Excluir
+
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {{/each}}
+
+    </table>
+
+    <hr>
+{{!-- -------------------------------------------Grafico------------------------------------------ --}}
+{{!-- -------------------------------------------Grafico------------------------------------------ --}}
+{{!-- -------------------------------------------Grafico------------------------------------------ --}}
+    <h2>Gráfico de Consumo</h2>
+
+    <canvas id="grafico"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        setTimeout(() => {
+
+            const mensagem = document.getElementById("mensagem");
+
+            if(mensagem){
+
+                mensagem.style.display = "none";
+
+            }
+
+        },3000);
+        const consumos = {{{ dadosGrafico }}};
+
+        // Meses do gráfico
+        const meses = [
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro"
+        ];
+
+        // Vetores de Água e Energia
+        const agua = new Array(12).fill(0);
+        const energia = new Array(12).fill(0);
+
+        // Preenche os vetores
+        consumos.forEach(c => {
+
+            const indice = meses.indexOf(c.mes);
+
+            if (indice !== -1) {
+
+                if (c.tipo === "Água") {
+
+                    agua[indice] = c.valor;
+
+                } else {
+
+                    energia[indice] = c.valor;
+
+                }
+
+            }
+
+        });
+
+        new Chart(document.getElementById("grafico"), {
+
+            type: "line",
+
+            data: {
+
+                labels: meses,
+
+                datasets: [
+
+                    {
+
+                        label: "💧 Água",
+
+                        data: agua,
+
+                        borderWidth: 2,
+
+                        tension: 0.3
+
+                    },
+
+                    {
+
+                        label: "⚡ Energia",
+
+                        data: energia,
+
+                        borderWidth: 2,
+
+                        tension: 0.3
+
+                    }
+
+                ]
+
+            }
+
+        });
+
+    </script>
+
+{{!-- ------------------------------------------Equipamentos--------------------------------- --}}
+</body>
+
+</html>

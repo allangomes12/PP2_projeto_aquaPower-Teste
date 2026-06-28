@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Usuários Cadastrados</h1>
+
+    {{#each usuarios}}
+
+    <p>Nome: {{this.nome}}</p>
+    <p>Email: {{this.email}}</p>
+
+    <a href="/usuarios/editar/{{this.id}}">
+        <button>Editar</button>
+    </a>
+
+    <form action="/usuarios/delete/{{this.id}}" method="POST">
+        <button>Excluir</button>
+    </form>
+
+    <hr>
+
+    {{/each}}
+
+    <a href="/">
+        <button>Voltar</button>
+    </a>
+</body>
+</html>
