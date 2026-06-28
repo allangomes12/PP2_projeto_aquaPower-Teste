@@ -4,14 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/public/css/home.css">
-    <style>
-        a img{
-            width: 100px;
-            height: 100px;
-        }
-    </style>
+    <title>home</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -20,24 +17,45 @@
 {{!-- --------------------------------------------header---------------------------------------     --}}
 {{!-- --------------------------------------------header---------------------------------------     --}}
     <header>
-        <h1>AquaPower</h1>
+        <div class="logoCompleta">
+            <img src="/img/LogoFoto.png" alt="">
+            <h1><span class="aqua">Aqua</span><span class="power">Power</span></h1>
+        </div>
+        
+        <div class="navBar">
+            <div class="cabecalho">
+                <a href="" id="">Home</a>
+                <a href="" id="">Consumos</a>
+                <a href="" id="">Equipamentos</a>
+            </div>
+            <div class="imagemPerfil">
+                <a href="/usuarios">
+                    <img src="https://thumbs.dreamstime.com/b/%C3%ADcone-do-perfil-avatar-defeito-105356015.jpg" alt="">
+                </a>
+            </div>
+        </div>
     </header>
+
     {{#if mensagemCrud}}
 
         <div id="mensagem">{{mensagemCrud}}</div>
-        
-    {{/if}}
-{{!-- ------------------------------------------Perfil----------------------------------------     --}}
-{{!-- ------------------------------------------Perfil----------------------------------------     --}}
-{{!-- ------------------------------------------Perfil----------------------------------------     --}}
 
-    <a href="/usuarios">
-        <img src="https://thumbs.dreamstime.com/b/%C3%ADcone-do-perfil-avatar-defeito-105356015.jpg" alt="">
-    </a>
+    {{/if}}
+
+{{!-- ----------------------------------------Bem vindo--------------------------------------- --}}
+{{!-- ----------------------------------------Bem vindo--------------------------------------- --}}
+{{!-- ----------------------------------------Bem vindo--------------------------------------- --}}
+    <div class="bemVindo">
+        <h1>Bem-vindo ao <span class="aqua">Aqua</span><span class="power">Power</span></h1>
+        <p>Acompanhe seu consumo de água e energia de forma simples e eficiente.</p>
+    </div>
+
+
+
+
 {{!-- ----------------------------------------Eficiencia-------------------------------------- --}}
 {{!-- ----------------------------------------Eficiencia-------------------------------------- --}}
 {{!-- ----------------------------------------Eficiencia-------------------------------------- --}}
-    <hr>
     <table>
         <tr>
             <td style="padding-left:0px">
@@ -65,160 +83,172 @@
 {{!-- ----------------------------------------Tabela-------------------------------------------- --}}
 {{!-- ----------------------------------------Tabela-------------------------------------------- --}}
 {{!-- ----------------------------------------Tabela-------------------------------------------- --}}
-    <h2>Histórico de Consumo</h2>
-
-    <table border="1">
-
-        <tr>
-
-            <th>Tipo</th>
-            <th>Mês</th>
-            <th>Ano</th>
-            <th>Valor</th>
-            <th>Ações</th>
-
-        </tr>
-
-        {{#each consumos}}
-
-        <tr>
-
-            <td>{{this.tipo}}</td>
-            <td>{{this.mes}}</td>
-            <td>{{this.ano}}</td>
-            <td>{{this.valor}}</td>
-
-            <td>
-
-                <a href="/consumos/editar/{{this.id}}">
-                    <button>Editar</button>
-                </a>
-
-                <form action="/consumos/delete/{{this.id}}" method="POST" style="display:inline">
-
-                    <button>
-
-                        Excluir
-
-                    </button>
-
-                </form>
-
-            </td>
-
-        </tr>
-
-        {{/each}}
-
-    </table>
-
-    <hr>
+<div class="container">
+    <div class="card">
+        <h2>Histórico de Consumo</h2>
+    
+        <table border="1">
+            <tr>
+                <th>Tipo</th>
+                <th>Mês</th>
+                <th>Ano</th>
+                <th>Valor</th>
+                <th>Ações</th>
+            </tr>
+    
+            {{#each consumos}}
+            <tr>
+            
+                <td>{{this.tipo}}</td>
+                <td>{{this.mes}}</td>
+                <td>{{this.ano}}</td>
+                <td>{{this.valor}}</td>
+    
+                <td>
+                    <a href="/consumos/editar/{{this.id}}">
+                        <button>Editar</button>
+                    </a>
+    
+                    <form action="/consumos/delete/{{this.id}}" method="POST" style="display:inline">
+                        <button>Excluir</button>
+                    </form>
+                </td>
+    
+            </tr>
+    
+            {{/each}}
+    
+        </table>
+    
+        <hr>
+    </div>
 {{!-- -------------------------------------------Grafico------------------------------------------ --}}
 {{!-- -------------------------------------------Grafico------------------------------------------ --}}
 {{!-- -------------------------------------------Grafico------------------------------------------ --}}
-    <h2>Gráfico de Consumo</h2>
+    <div class="card">
+        <h2>Gráfico de Consumo</h2>
 
-    <canvas id="grafico"></canvas>
+        <label>Filtrar por ano:</label>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <select id="filtroAno">
 
-    <script>
-        setTimeout(() => {
+            <option value="Todos">Todos</option>
+            {{#each anos}}
 
-            const mensagem = document.getElementById("mensagem");
+                <option value="{{this}}">{{this}}</option>
 
-            if(mensagem){
+            {{/each}}
 
-                mensagem.style.display = "none";
+        </select>
 
-            }
+<br><br>
 
-        },3000);
-        const consumos = {{{ dadosGrafico }}};
+        <canvas id="grafico"></canvas>
 
-        // Meses do gráfico
-        const meses = [
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro"
-        ];
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        // Vetores de Água e Energia
-        const agua = new Array(12).fill(0);
-        const energia = new Array(12).fill(0);
+        <script>
+            setTimeout(() => {
 
-        // Preenche os vetores
-        consumos.forEach(c => {
+                const mensagem = document.getElementById("mensagem");
 
-            const indice = meses.indexOf(c.mes);
+                if(mensagem){
 
-            if (indice !== -1) {
-
-                if (c.tipo === "Água") {
-
-                    agua[indice] = c.valor;
-
-                } else {
-
-                    energia[indice] = c.valor;
+                    mensagem.style.display = "none";
 
                 }
 
-            }
+            },3000);
+            const consumos = {{{ dadosGrafico }}};
 
-        });
+            // Meses do gráfico
+            const meses = [
+                "Janeiro",
+                "Fevereiro",
+                "Março",
+                "Abril",
+                "Maio",
+                "Junho",
+                "Julho",
+                "Agosto",
+                "Setembro",
+                "Outubro",
+                "Novembro",
+                "Dezembro"
+            ];
 
-        new Chart(document.getElementById("grafico"), {
+            const cores = {
+                "Água":"#3B82F6",
+                "Energia":"#FACC15"
+            };
+            function desenharGrafico(anoSelecionado){
 
-            type: "line",
+                const datasets = {};
 
-            data: {
+                consumos.forEach(c=>{
 
-                labels: meses,
-
-                datasets: [
-
-                    {
-
-                        label: "💧 Água",
-
-                        data: agua,
-
-                        borderWidth: 2,
-
-                        tension: 0.3
-
-                    },
-
-                    {
-
-                        label: "⚡ Energia",
-
-                        data: energia,
-
-                        borderWidth: 2,
-
-                        tension: 0.3
-
+                    if (anoSelecionado !== "Todos" && String(c.ano) !== anoSelecionado) {
+                        return;
                     }
 
-                ]
+                    const chave = `${c.tipo}-${c.ano}`;
 
+                    if(!datasets[chave]){
+                        datasets[chave]=new Array(12).fill(0);
+                    }
+
+                    const indice = meses.indexOf(c.mes);
+                    if(indice !== -1){
+                        datasets[chave][indice] += c.valor;
+                    }
+
+                });
+
+                const listaDatasets=[];
+                let contador=0;
+
+                for(const chave in datasets){
+                    const partes=chave.split("-");
+                    const tipo=partes[0];
+                    const ano=partes[1];
+
+                    listaDatasets.push({
+                        label: tipo === "Água"
+                            ? ` Água ${ano}`
+                            : ` Energia ${ano}`,
+                        data:datasets[chave],
+                        borderColor:cores[tipo],
+                        backgroundColor:cores[tipo],
+                        borderDash:contador%2==0 ? [] : [8,5],
+                        borderWidth:3,
+                        tension:.3
+                    });
+                    contador++;
+                }
+
+                if(window.meuGrafico){
+                    window.meuGrafico.destroy();
+                }
+
+                window.meuGrafico=new Chart(
+                document.getElementById("grafico"),
+
+                    {
+                        type:"line",
+                        data:{
+                            labels:meses,
+                            datasets:listaDatasets
+                        }
+                    }
+                );
             }
-
-        });
-
-    </script>
-
+            desenharGrafico("Todos");
+            document.getElementById("filtroAno").addEventListener("change",function(){
+                desenharGrafico(this.value);
+            });
+        </script>
+    </div>
+</div>
 {{!-- ------------------------------------------Equipamentos--------------------------------- --}}
 </body>
 

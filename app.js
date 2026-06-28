@@ -45,7 +45,7 @@ app.get("/", async (req, res) => {
         const consumos = await Consumo.findAll({
         raw: true
     });
-
+    const anos = [...new Set(consumos.map(c => c.ano))];
     let totalAgua = 0;
     let totalEnergia = 0;
 
@@ -84,17 +84,14 @@ app.get("/", async (req, res) => {
     }
 
     res.render("home", {
-
         consumos,
         dadosGrafico: JSON.stringify(consumos),
-
+        anos,
         totalAgua,
         totalEnergia,
-
         eficiencia,
-        mensagemEficiencia,
+        mensagem: mensagemEficiencia,
         mensagemCrud
-
     });
 
     } catch (erro) {
@@ -211,9 +208,7 @@ app.get("/consumos/editar/:id", async (req,res)=>{
     const id = req.params.id;
 
     const consumo = await Consumo.findByPk(id,{
-
         raw:true
-
     });
 
     res.render("editarConsumo",{
