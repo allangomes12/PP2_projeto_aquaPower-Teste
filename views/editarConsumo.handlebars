@@ -1,56 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Editar Consumo | AquaPower</title>
+
+    <link rel="stylesheet" href="/css/home.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <h1>Editar Consumo</h1>
 
-    <form action="/consumos/update" method="POST">
+<header>
 
-        <input type="hidden" name="id" value="{{consumo.id}}">
+    <div class="logoCompleta">
 
-        <label>Tipo</label>
+        <img src="/img/LogoFoto.png" alt="Logo AquaPower">
 
-        <select name="tipo">
+        <h1>
 
-            <option value="Água">Água</option>
+            <span class="aqua">Aqua</span><span class="power">Power</span>
 
-            <option value="Energia">Energia</option>
+        </h1>
 
-        </select>
+    </div>
 
-        <br><br>
+</header>
 
-        <label>Mês</label>
+<div class="paginaCadastro">
 
-        <input type="text" name="mes" value="{{consumo.mes}}">
+    <div class="cardCadastro">
 
-        <br><br>
+        <h2>Editar Consumo</h2>
 
-        <label>Ano</label>
+        <p>
 
-        <input type="number" name="ano" value="{{consumo.ano}}">
+            Atualize as informações do consumo cadastrado.
 
-        <br><br>
+        </p>
 
-        <label>Valor</label>
+        <form action="/consumos/update" method="POST">
 
-        <input type="number" step="0.01" name="valor" value="{{consumo.valor}}">
+            <input
+                type="hidden"
+                name="id"
+                value="{{consumo.id}}">
 
-        <br><br>
+            <label>Tipo</label>
 
-        <button>
+            <input
+                type="text"
+                name="tipo"
+                value="{{consumo.tipo}}"
+                required>
 
-            Salvar Alterações
+            <label>Mês</label>
 
-        </button>
+            <input
+                type="text"
+                name="mes"
+                value="{{consumo.mes}}"
+                required>
 
-    </form>
+            <label>Ano</label>
+
+            <input
+                type="number"
+                name="ano"
+                value="{{consumo.ano}}"
+                required>
+
+            <label>Valor</label>
+
+            <input
+                type="number"
+                step="0.01"
+                name="valor"
+                value="{{consumo.valor}}"
+                required>
+
+            <button type="submit">
+
+                Salvar Alterações
+
+            </button>
+
+        </form>
+
+        <a href="/" class="voltar">
+
+            ← Voltar para a Home
+
+        </a>
+
+    </div>
+
+</div>
+
 </body>
 
 </html>

@@ -121,6 +121,7 @@ header .imagemPerfil a img{
     display: flex;
     text-align: center;
     flex-direction: column;
+    margin-top: 10px;
 }
 .bemVindo h1{
     font-size: 35px;
@@ -186,4 +187,189 @@ button{
 }
 button:hover{
     background:#1D4ED8;
+}
+
+/* ===========================================
+   CADASTRO DE CONSUMO
+=========================================== */
+
+.paginaCadastro{
+    min-height:calc(100vh - 70px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:50px 20px;
+}
+
+.cardCadastro{
+    width:100%;
+    max-width:550px;
+    background:#111827;
+    border:1px solid #2563EB;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.cardCadastro h2{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.cardCadastro p{
+    text-align:center;
+    color:#CBD5E1;
+    margin-bottom:35px;
+}
+
+.cardCadastro form{
+    display:flex;
+    flex-direction:column;
+}
+
+.cardCadastro label{
+    margin-top:18px;
+    margin-bottom:8px;
+    font-weight:600;
+    color:white;
+}
+
+.cardCadastro input,
+.cardCadastro select{
+    background:#0F172A;
+    color:white;
+    border:1px solid #334155;
+    border-radius:10px;
+    padding:14px;
+    font-size:15px;
+    transition:.25s;
+}
+
+.cardCadastro input:focus,
+.cardCadastro select:focus{
+    outline:none;
+    border-color:#3B82F6;
+    box-shadow:0 0 12px rgba(59,130,246,.25);
+}
+
+.cardCadastro button{
+    margin-top:35px;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#2563EB;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.cardCadastro button:hover{
+    background:#1D4ED8;
+    transform:translateY(-2px);
+}
+
+.voltar{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    color:#60A5FA;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.voltar:hover{
+    color:white;
+}
+
+/* =======================================
+   TELA DE USUÁRIOS
+=======================================*/
+
+.cardUsuarios{
+    width:90%;
+    max-width:1100px;
+    background:#111827;
+    border:1px solid #2563EB;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 10px 35px rgba(0,0,0,.35);
+}
+
+.cardUsuarios h2{
+    text-align:center;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.cardUsuarios p{
+    text-align:center;
+    color:#CBD5E1;
+    margin-bottom:35px;
+}
+
+.cardUsuarios table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.cardUsuarios th{
+    background:#161E2E;
+    color:white;
+    padding:18px;
+    text-align:left;
+}
+
+.cardUsuarios td{
+    padding:18px;
+    color:#CBD5E1;
+}
+
+.cardUsuarios tbody tr{
+    transition:.25s;
+}
+
+.cardUsuarios tbody tr:hover{
+    background:#1E293B;
+}
+
+.acoes{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.acoes form{
+    margin:0;
+}
+
+.btnEditar{
+    background:#2563EB;
+}
+
+.btnEditar:hover{
+    background:#1D4ED8;
+}
+
+.btnExcluir{
+    background:#DC2626;
+}
+
+.btnExcluir:hover{
+    background:#B91C1C;
+}
+
+.botoesInferiores{
+    display:flex;
+    justify-content:space-between;
+    margin-top:35px;
+}
+
+.btnVoltar{
+    background:#374151;
+}
+
+.btnVoltar:hover{
+    background:#4B5563;
 }

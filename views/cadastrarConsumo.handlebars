@@ -1,74 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Novo Consumo | AquaPower</title>
+
+    <link rel="stylesheet" href="/css/home.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <h1>Novo Consumo</h1>
 
-    <form action="/consumos/add" method="POST">
+<header>
 
-        <label>Tipo</label>
+    <div class="logoCompleta">
 
-        <select name="tipo">
+        <img src="/img/LogoFoto.png" alt="Logo">
 
-            <option value="Água">Água</option>
+        <h1>
 
-            <option value="Energia">Energia</option>
+            <span class="aqua">Aqua</span><span class="power">Power</span>
 
-        </select>
+        </h1>
 
-        <br><br>
+    </div>
 
-        <label>Mês</label>
+</header>
 
-        <select name="mes">
+<div class="paginaCadastro">
 
-            <option>Janeiro</option>
-            <option>Fevereiro</option>
-            <option>Março</option>
-            <option>Abril</option>
-            <option>Maio</option>
-            <option>Junho</option>
-            <option>Julho</option>
-            <option>Agosto</option>
-            <option>Setembro</option>
-            <option>Outubro</option>
-            <option>Novembro</option>
-            <option>Dezembro</option>
+    <div class="cardCadastro">
 
-        </select>
-        
-        <br><br>
+        <h2>Novo Consumo</h2>
 
-        <label>Ano</label>
+        <p>
 
-        <select name="ano">
+            Registre um novo consumo de água ou energia.
 
-            <option>2025</option>
-            <option>2026</option>
-            <option>2027</option>
+        </p>
 
-        </select>
-        <br><br>
+        <form action="/consumos/add" method="POST">
 
-        <label>Valor</label>
+            <label>Tipo</label>
 
-        <input type="number" step="0.01" name="valor">
+            <select name="tipo">
 
-        <br><br>
+                <option value="Água">Água</option>
 
-        <button>
+                <option value="Energia">Energia</option>
 
-            Salvar
+            </select>
 
-        </button>
+            <label>Mês</label>
 
-    </form>
+            <select name="mes">
+
+                <option>Janeiro</option>
+                <option>Fevereiro</option>
+                <option>Março</option>
+                <option>Abril</option>
+                <option>Maio</option>
+                <option>Junho</option>
+                <option>Julho</option>
+                <option>Agosto</option>
+                <option>Setembro</option>
+                <option>Outubro</option>
+                <option>Novembro</option>
+                <option>Dezembro</option>
+
+            </select>
+
+            <label>Ano</label>
+
+            <select name="ano">
+
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+
+            </select>
+
+            <label>Valor</label>
+
+            <input
+                type="number"
+                step="0.01"
+                name="valor"
+                placeholder="Ex: 120.50"
+                required>
+
+            <button type="submit">
+
+                Salvar Consumo
+
+            </button>
+
+        </form>
+
+        <a class="voltar" href="/">
+
+            ← Voltar para a Home
+
+        </a>
+
+    </div>
+
+</div>
+
 </body>
 
 </html>
